@@ -1,0 +1,271 @@
+<mvc:View controllerName="zcontractstatus.sd.controller.contractstatus" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<Shell id="shell">
+		<NavContainer id="wizardNavContainer">
+			<pages>
+				<Page id="wizardContentPage" showHeader="false">
+					<content>
+						<Wizard id="CreateProductWizard" complete="wizardCompletedHandler" finishButtonText="END OF FORM">
+							<WizardStep id="idCustomerDet" title="Customer Details" validated="true"  >
+								<MessageStrip class="sapUiSmallMarginBottom" text="Please enter all the mandatory customer details" showIcon="true"/>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm id="idCustomerDetails" editable="true" layout="ResponsiveGridLayout" title="General Customer Details" labelSpanXL="3"
+										labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0"
+										columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+										<f:content>
+											<Label text="Temporary Customer ID"/>
+											<Input id="idTemp" submit="onSubmit"/>
+											<Label text="Approval Status"/>
+											<Input id="idStatus" value="{/Zstatus}" />
+											<Label text="Pending/Rejected with User"/>
+											<Input id="idUser" value="{/Zuser_pending}" />
+											<Label text="Rejection comments"/>
+											<TextArea id="idComments"  value="{/Zcomments}" />
+											<Label text="SAP Customer ID"/>
+											<Input id="idSapId"  value="{/Zsap_user}" />
+											<Label text="Customer Name (EN)"/>
+											<Input id="idNameEn" value="{/ZnameEn}" liveChange="additionalInfoValidation"/>
+											<Label text="Customer Name (AR)"/>
+											<Input id="idNameAr" value="{/ZnameAr}"  textDirection="RTL" liveChange="additionalInfoValidation"/>
+											<Label text="Customer Brand Name"/>
+											<Input id="idBrandNameAr" value="{/Zbrandname}" maxLength="35" textDirection="RTL" liveChange="additionalInfoValidation"/>
+											<Label text="Customer Contact Name"/>
+											<Input id="idContactName" value="{/Zcontact}" textDirection="RTL" maxLength="35" liveChange="additionalInfoValidation"/>
+											<Label text="Customer Telephone (LandLine) Number"/>
+											<Input id="idTele" value="{/Zlandline}" type="Tel" maxLength="10" liveChange="additionalInfoValidation"/>
+											<Label text="Customer Mobile Number"/>
+											<Input id="idMobile" value="{/Zmobile}" type="Tel" required="true" maxLength="15" liveChange="additionalInfoValidation"/>
+											<Label text="Customer Email Address"/>
+											<Input id="idEmail" value="{/Zemail}" type="Email" placeholder="Enter E-Mail ..." valueStateText="E-Mail must be a valid email address." maxLength="35"
+											 liveChange="additionalInfoValidation"/>
+											<Label text="Sales Office"/>
+											<Input id="idSalesOffice" value="{/Zsalesoffice}" type="Text" placeholder="Enter Sales office ID" showSuggestion="true" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequestSoff" liveChange="additionalInfoValidation">
+												<suggestionItems>
+													<core:Item text="{Vkbur}"/>
+												</suggestionItems>
+											</Input>
+											<Text id="idSoffDescr" text="{/Zsalesofficetext}"/>
+											<Label text="City"/>
+											<Input id="idCity" value="{/Zcity}" type="Text" placeholder="Enter City"  showSuggestion="true" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequest" suggestionItems="{/citySet}" liveChange="additionalInfoValidation">
+												<suggestionItems>
+													<core:Item text="{Zcity}"/>
+												</suggestionItems>
+											</Input>
+											<Label text="Street"/>
+											<Input id="idStreet" value="{/Zstreet}"  liveChange="additionalInfoValidation"/>
+											<Label text="Area"/>
+											<Input id="idArea" value="{/Zarea}" liveChange="additionalInfoValidation"/>
+											<Label text="Sales Channel"/>
+											<Input id="idChannel" value="{/Zchannel}" type="Text"  placeholder="Enter channel ID" showSuggestion="true" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequestChannel" liveChange="additionalInfoValidation">
+												<suggestionItems>
+													<core:Item text="{Vtweg}"/>
+												</suggestionItems>
+											</Input>
+											<Text id="idChannelDescr" text="{/Zchanneltext}"/>
+											<Label text="Sales Division"/>
+											<Input id="idDivision" value="{/Zspart}" type="Text"  placeholder="Enter channel ID" showSuggestion="true" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequestDivison" liveChange="additionalInfoValidation">
+												<suggestionItems>
+													<core:Item text="{Spart}"/>
+												</suggestionItems>
+											</Input>
+											<Text id="idDivisonDescr" text="{/Zdivisontext}"/>
+											<Label text="Representative ID" />
+											<Input id="idRep" value="{/Zrep}"  type="Text"  placeholder="Enter Representative ID" showSuggestion="true" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequestRep" liveChange="additionalInfoValidation">
+												<suggestionItems>
+													<core:Item text="{Spart}"/>
+												</suggestionItems>
+											</Input>
+											<Text id="idRepDescr" text="{/Zsalesrepname}"/>
+											<Label text="Sales Rep/Lead Employee ID" required="true"/>
+											<Input id="idEmpId" value="{/Zemployee}"  placeholder="Enter Lead Employee ID" showSuggestion="true" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequestEmp" liveChange="additionalInfoValidation">
+												<suggestionItems>
+													<core:Item text="{Spart}"/>
+												</suggestionItems>
+											</Input>
+											<Text id="idEmpDescr"/>
+											<Label text="Route" />
+											<Input id="idRoute" value="{/Zroute}"  placeholder="Enter Route ID" liveChange="additionalInfoValidation"></Input>
+											<Label text="Number of Outlets" />
+											<Input id="idOutlets" value="{/Zoutlets}"  placeholder="Number of outlets" liveChange="additionalInfoValidation"></Input>
+											<Label text="Is the Customer part of Business plan ?" wrapping="true"/>
+											<Switch  id="Switch" customTextOn="Yes" customTextOff="No" change="onSwitchChange">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Switch>
+											<!--<Label></Label>-->
+											<!--<Button id="idMainEdit" text="EDIT DATA" press="onEdit" type="Reject" ></Button>-->
+											<!--<Label></Label>-->
+											<!--<Button id="idMainSave" text="Save and continue" press="onSave" ></Button>-->
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</WizardStep>
+							<WizardStep id="idCredit" title="Credit Details" validated="true"  > <!--activate="creditScreenValidation"-->
+								<MessageStrip class="sapUiSmallMarginBottom" text="Please enter Credit details" showIcon="true"/>
+								<f:SimpleForm id="idCreditDetails" editable="true">
+									<Label text="Customer Type"/>
+									<ComboBox id="idCustType"  items="{ path: '/customerTypeSet', sorter: { path: 'Ztype' } }" selectionChange="onChangeCustType">
+										<core:ListItem key="{Ztype}" text="{text}"/>
+									</ComboBox>
+									<Label   text="Pricing Type"/>
+									<ComboBox id="idPriceType" items="{ path: '/priceTypeSet', sorter: { path: 'Key' } }" selectionChange="onChangePriceType">
+										<core:ListItem key="{Key}" text="{Type}"/>
+									</ComboBox>
+									<Label text="Listing Fees (SAR)"/>
+									<Input id="idEntryFees"  type="Number" value="0.000"/>
+									<Label id="idLabelCreditLimit" text="Credit limit (SAR)"/>
+									<Input id="idCreditLimit"  type="Number" value="0.000" liveChange="creditScreenValidation"/>
+									<Label  id="idLabelPayTerms" text="Payment Terms"/>
+									<ComboBox id="idPayTerms" items="{ path: '/paytermsSet', sorter: { path: 'zterm' } }" selectionChange="onChangePayTerm">
+										<core:ListItem key="{zterm}" text="{text}"/>
+									</ComboBox>
+									<Label text="Rebate % (SAR)"/>
+									<Input id="idRebate"  type="Number" value="0.000"/>
+									<Label text="Fixed Investment(SAR) "/>
+									<Input id="idMonthlyFixed"  type="Number" value="0.000"/>
+									<Label></Label>
+									<!--<Button id="idEditCredit" text="EDIT CREDIT DATA" press="onEditCredit" type="Reject" ></Button>-->
+									<Label/>
+									<Button id="idSaveCredit" text="Save Credit Details" press="onSaveCreditDetails"></Button>
+								</f:SimpleForm>
+							</WizardStep>
+							<WizardStep id="idAttach" title="Documents Required" validated="true">
+								<MessageStrip class="sapUiSmallMarginBottom" text="Please upload all the required mandatory documents" showIcon="true"/>
+								<f:SimpleForm editable="true" title="Documents" layout="ResponsiveGridLayout" labelSpanXL="4"
+										labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+										columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+									<Label text="VAT registration Certificate"/>
+									<!--<u:FileUploader id="idfileUploaderVAT" tooltip="Upload VAT registration certificate" style="Emphasized"-->
+									<!--	placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfileVatBtn" type="Accept" press="openVATFile"/>
+									<!--<Button id="idfileVatBtnUpload" type="Up" press="uploadVATFile"/>-->
+									<!--<Button id="idButtonVAT" width="100px" text="Upload file" press="handleUploadPressVat" />-->
+									<Label text="Legitimate Agency"/>
+									<!--<u:FileUploader id="idfileUploaderAgency" width="100%" tooltip="Upload Legitimate Agency" style="Emphasized"
+										placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfileAgency" press="openAgencyFile"/>
+									<!--<Button id="idfileAgencyUpload" text ="Upload Legitimate Agency" press="openAgencyFile"/>-->
+									<!--<Button text="Upload File" width="100px" press=".handleUploadPressAgency" activeIcon="sap-icon://upload"/>-->
+									<Label text="Customer Bank Statement (3 Months)"/>
+									<!--<u:FileUploader id="idfileUploaderBankStmt" width="100%" tooltip="Upload Customer bank statement" style="Emphasized"
+										placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfileBankStmt" width="100%" press="openBankStmtFile"/>	
+									<!--<Button text="Upload File" width="100px" press="handleUploadPressBankStmt" activeIcon="sap-icon://upload"/>-->
+									<Label text="Shop License"/>
+									<!--<u:FileUploader id="idfileUploaderShopLicense" width="100%" tooltip="Upload Shop License" style="Emphasized"
+										placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfileLicense" width="100%" press="openLicenseFile"/>		
+									<!--<Button text="Upload File" width="100px" press="handleUploadPressShopLicense" activeIcon="sap-icon://upload"/>-->
+									<Label text="Customer ID"/>
+									<!--<u:FileUploader id="idfileUploaderCustomerId" width="100%" tooltip="Upload Customer ID" style="Emphasized"
+										placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfileID" width="100%" press="openIDFile"/>	
+									<!--<Button text="Upload File" width="100px" press="handleUploadPressCustomerId" activeIcon="sap-icon://upload"/>-->
+									<Label text="Commercial Registration Document"/>
+									<!--<u:FileUploader id="idfileUploaderCR" width="100%" tooltip="Upload Commercial Registration Document" style="Emphasized"
+										placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfileCR" width="100%" press="openCRFile"/>	
+									<!--<Button text="Upload File" width="100px" press="handleUploadPressCR" activeIcon="sap-icon://upload"/>-->
+									<Label text="Promissory note"/>
+									<!--<u:FileUploader id="idfileUploaderPromissory" width="100%" tooltip="Upload promissory note" style="Emphasized"
+										placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfilePromissory" width="100%" press="openPromissoryFile"/>	
+									<!--<Button text="Upload File" width="100px" press="handleUploadPressPromissory" activeIcon="sap-icon://upload"/>-->
+									<Label text="Bank Guarantee Letter"/>
+									<!--<u:FileUploader id="idfileUploaderGuarantee" width="100%" tooltip="Upload Bank Guarantee Letter" style="Emphasized"
+										placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfileBankLetter" width="100%" press="openBankLetterFile"/>	
+									<!--<Button text="Upload File" width="100px" press="handleUploadPressGuarantee" activeIcon="sap-icon://upload"/>-->
+									<Label text="Credit Account Facility Request"/>
+									<!--<u:FileUploader id="idfileUploaderCreditAccount" width="100%" tooltip="Upload Credit account facility request" style="Emphasized"
+										placeholder="Choose a file for Upload..."/>-->
+									<Button id="idfileCreditAcc" width="100%" press="openCreditAccountFile"/>
+									<!--<Button text="Upload File" width="100px" press="handleUploadPressCreditAccount" activeIcon="sap-icon://upload"/>-->
+									<Label></Label>
+									<!--<Button id="idUploadFiles" text="Upload Files" width="100px" press="handleUploadFiles" activeIcon="sap-icon://upload"/>
+									<Button id="idEditUploadFiles" text="Upload Files" width="100px" press="handleUploadFiles" activeIcon="sap-icon://upload"/>-->
+								</f:SimpleForm>
+							</WizardStep>
+							<WizardStep id="idSales" title="Sales Volume" validated="true">
+								<MessageStrip class="sapUiSmallMarginBottom" text="Please enter Monthly and annual sales (Volume and Value )" showIcon="true"/>
+								<f:SimpleForm editable="true">
+									<Label text="Monthly Sales Volume (Cartons)"/>
+									<Input id="idMonthlyVolume" type="Number"  value="0.000"/>
+									<Label text="Monthly Sales Value (SAR)"/>
+									<Input id="idMonthlyValue" type="Number"  value="0.00"/>
+									<Label text="Annual Sales Volume (Cartons)"/>
+									<Input id="idAnnualVolume" type="Number"  value="0.000"/>
+									<Label text="Annual Sales Value (SAR)"/>
+									<Input id="idAnnualValue" type="Number"  value="0.00"/>
+									<!--<Label></Label>-->
+									<!--<Button id="idSaveQtyValue" text="Save" type="Approve" press="onSaveQtyValue"></Button>-->
+									<!--<Label></Label>-->
+									<!--<Button id="idEditQtyValue" text="Edit" type="Reject" press="onEditQtyValue"></Button>-->
+								</f:SimpleForm>
+							</WizardStep>
+							
+							<WizardStep id="idprice" title="Budget Price Details" validated="true">
+								<MessageStrip class="sapUiSmallMarginBottom" text="Please enter Budget Price details" showIcon="true"/>
+								<Table id="idTable1" items="{ path: '/results/', sorter: { path: 'Matnr' } }">
+									<headerToolbar>
+										<Toolbar>
+											<Button icon="sap-icon://save" text="Save" press="onSaveTable"/>
+										</Toolbar>
+									</headerToolbar>
+									<columns>
+										<Column width="12em">
+											<Text text="Item"/>
+										</Column>
+										<Column width="12em">
+											<Text text="Description"/>
+										</Column>
+										<Column width="12em">
+											<Text text="Unit of Measure"/>
+										</Column>
+										<Column width="12em">
+											<Text text="Special Price"/>
+										</Column>
+										<Column width="12em">
+											<Text text="Free Monthly"/>
+										</Column>
+										<Column width="12em">
+											<Text text="Budget Prices"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{Matnr}" ></Text>
+												<Text text="{Zdescr}"></Text>
+												<Text text="{Zuom}"></Text>
+												<Text text="{ZspecialPrice}"></Text>
+												<Text text="{ZfreeMonthly}"></Text>
+												<Text text="{ZbudgetPrice}"></Text>
+												</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<!--<Label></Label>-->
+								<!--<Button id="idBtnSaveTable" text="Save Product Details" press="onSaveTable"></Button>-->
+								<Label></Label>
+							</WizardStep>
+						</Wizard>
+					</content>
+					<!--<footer>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button text="Cancel Contract Creation" press="handleWizardCancel"/>
+						</OverflowToolbar>
+					</footer>-->
+				</Page>
+			</pages>
+		</NavContainer>
+	</Shell>
+</mvc:View>	

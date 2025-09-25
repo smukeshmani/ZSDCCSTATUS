@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/test/Opa5"],function(t){"use strict";var e="contractstatus";t.createPageObjects({onTheAppPage:{actions:{},assertions:{iShouldSeeTheApp:function(){return this.waitFor({id:"app",viewName:e,success:function(){t.assert.ok(true,"The contractstatus view is displayed")},errorMessage:"Did not find the contractstatus view"})}}}})});

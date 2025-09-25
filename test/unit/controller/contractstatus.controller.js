@@ -1,0 +1,1 @@
+sap.ui.define(["zcontractstatus/sd/controller/contractstatus.controller"],function(t){"use strict";QUnit.module("contractstatus Controller");QUnit.test("I should test the contractstatus controller",function(n){var o=new t;o.onInit();n.ok(o)})});

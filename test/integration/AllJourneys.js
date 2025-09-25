@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/test/Opa5","./arrangements/Startup","./NavigationJourney"],function(t,e){"use strict";t.extendConfig({arrangements:new e,viewNamespace:"zcontractstatus.sd.view.",autoWait:true})});

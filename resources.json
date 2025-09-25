@@ -1,0 +1,78 @@
+{
+    "resources": [
+        {
+            "name": "fragments/filepreview.fragment.xml"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "controller/contractstatus.controller.js"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "model/models-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/contractstatus-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "../../sap-ui-version.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "view/contractstatus.view.xml"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "fragments/ValueHelpDialogSoff.fragment.xml"
+        },
+        {
+            "name": "fragments/ValueHelpDialogRep.fragment.xml"
+        },
+        {
+            "name": "fragments/ValueHelpDialogDivison.fragment.xml"
+        },
+        {
+            "name": "fragments/ValueHelpDialogChannel.fragment.xml"
+        },
+        {
+            "name": "fragments/ValueHelpDialog.fragment.xml"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "index.html"
+        }
+    ]
+}
